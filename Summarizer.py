@@ -52,6 +52,7 @@ def messages_for(website):
     ]
 
 # And now: call the OpenAI API. 
+# Use this if you are using Open AI
 
 def summarize(url):
     website = Website(url)
@@ -67,3 +68,11 @@ def display_summary(url):
 
 display_summary("https://timesnownews.com")
 
+# Use this if you are using Ollama 
+'''
+website = Website("https://cnn.com")
+messages = messages_for(website)
+
+response = ollama.chat(model=MODEL, messages=messages)
+print(response['message']['content'])
+'''
