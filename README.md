@@ -1,1 +1,1 @@
-This is a simple website summarizer. This uses ollama's llama3.2
+This has all the sample python files to work on different problems using llms
