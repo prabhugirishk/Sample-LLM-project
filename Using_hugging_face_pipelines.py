@@ -13,7 +13,7 @@ import soundfile as sf
 from IPython.display import Audio
 
 #get a hugging face token on hugginface.co
-hf_token = userdata.get('HF_TOKEN')
+hf_token = os.getenv('HF_TOKEN') # OR hf_token = userdata.get('HF_TOKEN')
 login(hf_token, add_to_git_credential=True)
 
 # Sentiment Analysis
@@ -57,10 +57,9 @@ print(result[0]['translation_text'])
 
 # Another translation, showing a model being specified
 # All translation models are here: https://huggingface.co/models?pipeline_tag=translation&sort=trending
+translator = pipeline("translation_en_to_hi",model = "Satwik11/gemma-2b-mt-Hindi-Fintuned") #device="cuda")
+result = translator("Hi, how are you doing?")
 
-translator = pipeline("translation_en_to_es", model="Helsinki-NLP/opus-mt-en-es", device="cuda")
-result = translator("The Data Scientists were truly amazed by the power and simplicity of the HuggingFace pipeline API.")
-print(result[0]['translation_text'])
 
 # Classification
 
