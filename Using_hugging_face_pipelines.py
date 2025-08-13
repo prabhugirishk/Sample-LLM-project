@@ -57,9 +57,16 @@ print(result[0]['translation_text'])
 
 # Another translation, showing a model being specified
 # All translation models are here: https://huggingface.co/models?pipeline_tag=translation&sort=trending
-translator = pipeline("translation_en_to_hi",model = "Satwik11/gemma-2b-mt-Hindi-Fintuned") #device="cuda")
+translator = pipeline("translation_en_to_hi",model = "Helsinki-NLP/opus-mt-en-hi") #device="cuda")
 result = translator("Hi, how are you doing?")
 
+#This is English to sanskrit
+translator = pipeline("translation", model="facebook/nllb-200-distilled-600M")
+# The `src_lang` and `tgt_lang` parameters specify the source and target languages.
+english_text = "How are you?"
+result = translator(english_text, src_lang="eng_Latn", tgt_lang="san_Deva")
+
+print(result)
 
 # Classification
 
