@@ -127,7 +127,8 @@ llm = ChatOpenAI(
 memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True)
 
 # the retriever is an abstraction over the VectorStore that will be used during RAG
-retriever = vectorstore.as_retriever()
+#retriever = vectorstore.as_retriever()
+retriever = vectorstore.as_retriever(search_kwargs={"k": 25}) # k is the number of chunks to use. Default chunk size is small (3 or 4)
 
 # putting it together: set up the conversation chain with the GPT 3.5 LLM, the vector store and memory
 conversation_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, memory=memory)
@@ -151,6 +152,7 @@ def chat(message, history):
 # And in Gradio:
 
 view = gr.ChatInterface(chat, type="messages").launch(inbrowser=True)
+
 
 
 
